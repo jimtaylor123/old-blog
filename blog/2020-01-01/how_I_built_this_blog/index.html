@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="referrer" content="always">
+    <link rel="canonical" href="/blog/2020-01-01/how_I_built_this_blog">
+    <meta name="description" content="How to use Traefik with Docker to save time and money">
+    <title>How I built this blog</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    <link rel="stylesheet" href="/assets/build/css/main.css?id=7ecca48dab65f903b523">
+    <link rel="shortcut icon" type="image/png" href="/assets/images/favicon.png" />
+</head>
+
+
+<body class="font-sans antialiased text-gray-100 leading-normal tracking-normal p-0 bg-gray-900">
+
+	<!-- Page image -->
+	<div class="bg-cover bg-bottom object-fit h-96" style="background-image:url('/assets/images/articles/building_blocks.jpg');"></div>
+
+	<!-- Text content -->
+	<div class="max-w-4xl mx-auto h-auto lg:h-screen">
+
+		<div class="flex items-center flex-wrap">
+
+			<!-- Article header -->
+			<div class="pt-5 pb-2 w-full mx-6 lg:mx-0 text-center lg:text-left flex justify-center lg:justify-between">
+				<div>
+					<a href="/">
+						<h1 id="title" class="text-gray-100 text-3xl font-bold">How I built this blog</h1>
+					</a>
+					January 1, 2020 <span class="font-hairline text-teal-500">|</span> <a class="text-xs" href="https://unsplash.com/photos/t3d22GqvUqs" target="_blank">Image: Kevin Jarrett</a>
+					<div class="mt-4 align-center flex justify-center">
+						<a href="/">
+							<image class="w-16 h-16 object-cover rounded-full m-4 sm:hidden" src="/assets/images/Jim-Taylor.jpg">
+						</a>
+					</div>
+				</div>
+				<a href="/">
+					<image class="w-16 h-16 object-cover rounded-full m-4 hidden sm:block" src="/assets/images/Jim-Taylor.jpg">
+				</a>
+			</div>
+
+			<!-- Divider -->
+			<div class="mx-auto lg:mx-0 w-4/5 pt-3 border-b-2 border-teal-500 opacity-25"></div>
+
+			<!-- Article -->
+			<div id="article" class="pt-2 mx-4 lg:mx-auto">
+				<p>As a way of giving credit to others AND of blowing my own trumpet, here's a quick overview of the tools I used to make this blog:</p>
+
+<h1>VS Code</h1>
+
+<p><a href="https://code.visualstudio.com/">VS code</a> is the most popular IDE (aka code editing software) in the world. And is developed free of charge by Microsoft. I don't know WHY it's free, I don't think anyone knows, but I'm guessing it's a shrewd move by Microsoft to get the attention of the developer led spend, and along with their purchase of github it has clearly changed the image of the company massively.<br />
+<br>
+Why not PHP storm? I often work with developers who prefer PHP storm, but I like the fact that VS code has such a large and diverse user base, meaning it's not commited to a particular language. As someone who aspires to be a full stack developer and a technological generalist/pragmatist that's why I'm more attracted to VS code that any other editor.<br />
+<br>
+And choosing your code editor is a bit like an investment - once you've chosen it you stay with it unless things get really bad.<br />
+<br>
+Finally, VS code is really great, and it's free.</p>
+
+<h1>Static site generator: Laravel Jigsaw</h1>
+
+<p>I've been developing with Laravel for 4 years or so. When I decided to blog I tried various platforms such as <a href="https://github.com/writingink/wink">Laravel wink</a> and wordpress before settling on <a href="https://jigsaw.tighten.co/">Jigsaw</a>.<br />
+<br>
+I'm not going to lie, Jigsaw was more complicated than I expected to set up, but truth be told it's a great static site generator and I can't imagine it could be made any more user friendly without sacrificing it's aim to be a site generator <strong>for developers</strong>. I highly recommend it.</p>
+
+<h1>Design: Tailwind Toolbox</h1>
+
+<p>Tailwind toolbox is where I got my homepage design from, specifically <a href="https://www.tailwindtoolbox.com/templates/profile-card-demo.php">this profile page</a>. The whole site is full of great starters, and I aim to return to the site in future for other projects.<br />
+<br>
+I also like the fact that the project originates in India - sometimes the Laravel community feels very US based, and I think developing world agencies/programmers are generally underrated - it's just good to keep your influences broad and varied.</p>
+
+<h1>CSS: Tailwind CSS</h1>
+
+<p>I absolutely love <a href="https://tailwindcss.com/">tailwind CSS</a> - the best thing about it is that you <em>learn CSS</em> by using the utility classes. In other words, if you are struggling to expand the amount of CSS you understand OR use, start using tailwind and your style and capabilities will suddently expand.<br />
+<br>
+A quick example - I would never have thought of using <a href="https://tailwindcss.com/docs/font-weight/#app">hairline text</a> or antialized fonts before using tailwind. Same goes for things like <a href="https://tailwindcss.com/docs/line-height/#app">letter height</a> ("leading", as in "lead" roofing) and tracking (letter spacing):</p>
+
+<pre><code class="language-html">&lt;body class="font-sans antialiased text-gray-100 leading-normal tracking-wider p-0 bg-cover" style="background-image:url('/assets/images/London-Night.jpg');"&gt;
+</code></pre>
+
+<p>Another example - the <a href="https://tailwindcss.com/docs/flex/#app">flex utilities</a> in tailwind are a summary of the possibilities offered by flexbox. Using tailwind makes you understand the range of options as you code.</p>
+
+<h1>Images and icons</h1>
+
+<p>No surprises here:</p>
+
+<ul>
+<li>I'm constantly amazed by the free images on <a href="unsplash.com/">Unsplash images</a> and grateful to be able to use them with credits on my blog.</li>
+<li>SVG icons from <a href="http://simpleicons.org/?q=date">Simple icons</a> and     <a href="https://fontawesome.com/">Font Awesome</a> were all helpful, as usual.</li>
+</ul>
+
+<p>I was planning to use <a href="https://www.zondicons.com/">zondicons</a>, but found the range too limited - they are excellent and free so I can't complain.</p>
+
+<h1>Disqus comments</h1>
+
+<p>I just used the standard <a href="https://help.disqus.com/en/articles/1717112-universal-embed-code">disqus code embed</a>. I considered and rejected both twitter based comments and hosting my own. Honestly, I don't forsee comments being a big deal, it's just a personal blog.</p>
+
+<h1>Github pages</h1>
+
+<p>Finally, I'm using <a href="https://pages.github.com/">github pages</a> to host my blog completely free. Another Microsoft freebie.</p>
+			</div>
+
+			<!-- Pin to top right corner -->
+			<div class="absolute top-0 right-0 h-12 w-18 p-4">
+				<button class="js-change-theme focus:outline-none">☀️</button>
+			</div>
+
+		</div>
+
+		<div id="diqus_container" class="bg-gray-900 text-gray-900 p-10">
+    <div id="disqus_thread">
+
+    </div>
+
+    <script>
+        (function() {
+            var d = document,
+                s = d.createElement('script');
+            s.src = 'https://jimtaylor-co-uk.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+
+    <noscript>
+        Please enable JavaScript to view the
+        <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.
+        </a>
+    </noscript>
+
+</div>
+	</div>
+
+	<script>
+		//Toggle mode
+		const toggle = document.querySelector('.js-change-theme');
+		const body = document.querySelector('body');
+		const title = document.querySelector('#title');
+		const articles = document.querySelectorAll('.article');
+
+		const disqus = document.querySelector('#diqus_container');
+
+
+		if (localStorage.getItem('jimtaylor-colorscheme') == 'light') {
+			this.lightsOn(false);
+		}
+
+		toggle.addEventListener('click', () => {
+
+			if (body.classList.contains('text-gray-100')) {
+
+				this.lightsOn();
+
+			} else {
+				this.lightsOff();
+			}
+		});
+
+		function lightsOn(reload = true) {
+			toggle.innerHTML = "🌙";
+
+			body.classList.remove('text-gray-100');
+			body.classList.add('text-gray-900');
+
+			for (let i = 0; i < articles.length; ++i) {
+				let item = articles[i];
+				item.classList.remove('bg-gray-800');
+				item.classList.add('bg-gray-400');
+			}
+
+			body.classList.remove('bg-gray-900');
+			body.classList.add('bg-yellow-200');
+
+			title.classList.remove('text-gray-100');
+			title.classList.add('text-gray-900');
+
+			disqus.classList.remove('text-gray-100');
+			disqus.classList.remove('bg-gray-900');
+			disqus.classList.add('text-gray-900');
+			disqus.classList.add('bg-yellow-200');
+
+			localStorage.setItem('jimtaylor-colorscheme', 'light')
+
+			if (reload) {
+				window.location.reload(false); // for disqus
+			}
+		}
+
+		function lightsOff(reload = true) {
+			toggle.innerHTML = "☀️";
+			body.classList.remove('text-gray-900');
+			body.classList.add('text-gray-100');
+			for (let i = 0; i < articles.length; ++i) {
+				let item = articles[i];
+				item.classList.remove('bg-gray-400');
+				item.classList.add('bg-gray-800');
+			}
+
+			body.classList.remove('bg-yellow-200');
+			body.classList.add('bg-gray-900');
+
+			title.classList.remove('text-gray-900');
+			title.classList.add('text-gray-100');
+
+			disqus.classList.remove('text-gray-900');
+			disqus.classList.add('text-gray-100');
+
+			disqus.classList.remove('bg-yellow-200');
+			disqus.classList.add('bg-gray-900');
+
+			localStorage.setItem('jimtaylor-colorscheme', 'dark');
+
+			if (reload) {
+				window.location.reload(false); // for disqus
+			}
+		}
+	</script>
+
+
+</body>
+
+
+</html>

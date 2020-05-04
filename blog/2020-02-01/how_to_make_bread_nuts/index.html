@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="referrer" content="always">
+    <link rel="canonical" href="/blog/2020-02-01/how_to_make_bread_nuts">
+    <meta name="description" content="How to make doughnuts from stale bread - breadnuts">
+    <title>How to make doughnuts from stale bread - breadnuts</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    <link rel="stylesheet" href="/assets/build/css/main.css?id=7ecca48dab65f903b523">
+    <link rel="shortcut icon" type="image/png" href="/assets/images/favicon.png" />
+</head>
+
+
+<body class="font-sans antialiased text-gray-100 leading-normal tracking-normal p-0 bg-gray-900">
+
+	<!-- Page image -->
+	<div class="bg-cover bg-center object-fit h-96" style="background-image:url('/assets/images/articles/breadnuts_cropped.jpg');"></div>
+
+	<!-- Text content -->
+	<div class="max-w-4xl mx-auto h-auto lg:h-screen">
+
+		<div class="flex items-center flex-wrap">
+
+			<!-- Article header -->
+			<div class="pt-5 pb-2 w-full mx-6 lg:mx-0 text-center lg:text-left flex justify-center lg:justify-between">
+				<div>
+					<a href="/">
+						<h1 id="title" class="text-gray-100 text-3xl font-bold">How to make doughnuts from stale bread - breadnuts</h1>
+					</a>
+					February 1, 2020 <span class="font-hairline text-teal-500">|</span> <a class="text-xs" href="https://www.instagram.com/p/B--gur6APy9/" target="_blank">Image: Luciene Taylor</a>
+					<div class="mt-4 align-center flex justify-center">
+						<a href="/">
+							<image class="w-16 h-16 object-cover rounded-full m-4 sm:hidden" src="/assets/images/Jim-Taylor.jpg">
+						</a>
+					</div>
+				</div>
+				<a href="/">
+					<image class="w-16 h-16 object-cover rounded-full m-4 hidden sm:block" src="/assets/images/Jim-Taylor.jpg">
+				</a>
+			</div>
+
+			<!-- Divider -->
+			<div class="mx-auto lg:mx-0 w-4/5 pt-3 border-b-2 border-teal-500 opacity-25"></div>
+
+			<!-- Article -->
+			<div id="article" class="pt-2 mx-4 lg:mx-auto">
+				<p>Here's a great recipe using old bread my wife came up with the other day. Apparently these are called "rabanadas" in Argentina and Brazil. I call them breadnuts (i.e. doughnuts made from bread).</p>
+
+<h2>1. Mix eggs and milk, bit of sugar</h2>
+
+<h2>2. Dip slices of stale bread in egg and milk mix</h2>
+
+<h2>3. Shallow fry until golden brown</h2>
+
+<h2>4. Dip in sugar and cinammon</h2>
+
+<p>These are a delicious way to use up old bread. Stale bread is even better. Apparently you can also do the above with a jam sandwich to make a kind of jam doughnut.</p>
+
+<p>Just in case you can't see the photo in the header, here it is again 🤤:</p>
+
+<p><img src="/assets/images/articles/breadnuts.jpg" alt="A list of 'mynextproject' domains available on freenom.com" title="Mynextproject available on freenom.com" width="100%" height="100%" /></p>
+			</div>
+
+			<!-- Pin to top right corner -->
+			<div class="absolute top-0 right-0 h-12 w-18 p-4">
+				<button class="js-change-theme focus:outline-none">☀️</button>
+			</div>
+
+		</div>
+
+		<div id="diqus_container" class="bg-gray-900 text-gray-900 p-10">
+    <div id="disqus_thread">
+
+    </div>
+
+    <script>
+        (function() {
+            var d = document,
+                s = d.createElement('script');
+            s.src = 'https://jimtaylor-co-uk.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+
+    <noscript>
+        Please enable JavaScript to view the
+        <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.
+        </a>
+    </noscript>
+
+</div>
+	</div>
+
+	<script>
+		//Toggle mode
+		const toggle = document.querySelector('.js-change-theme');
+		const body = document.querySelector('body');
+		const title = document.querySelector('#title');
+		const articles = document.querySelectorAll('.article');
+
+		const disqus = document.querySelector('#diqus_container');
+
+
+		if (localStorage.getItem('jimtaylor-colorscheme') == 'light') {
+			this.lightsOn(false);
+		}
+
+		toggle.addEventListener('click', () => {
+
+			if (body.classList.contains('text-gray-100')) {
+
+				this.lightsOn();
+
+			} else {
+				this.lightsOff();
+			}
+		});
+
+		function lightsOn(reload = true) {
+			toggle.innerHTML = "🌙";
+
+			body.classList.remove('text-gray-100');
+			body.classList.add('text-gray-900');
+
+			for (let i = 0; i < articles.length; ++i) {
+				let item = articles[i];
+				item.classList.remove('bg-gray-800');
+				item.classList.add('bg-gray-400');
+			}
+
+			body.classList.remove('bg-gray-900');
+			body.classList.add('bg-yellow-200');
+
+			title.classList.remove('text-gray-100');
+			title.classList.add('text-gray-900');
+
+			disqus.classList.remove('text-gray-100');
+			disqus.classList.remove('bg-gray-900');
+			disqus.classList.add('text-gray-900');
+			disqus.classList.add('bg-yellow-200');
+
+			localStorage.setItem('jimtaylor-colorscheme', 'light')
+
+			if (reload) {
+				window.location.reload(false); // for disqus
+			}
+		}
+
+		function lightsOff(reload = true) {
+			toggle.innerHTML = "☀️";
+			body.classList.remove('text-gray-900');
+			body.classList.add('text-gray-100');
+			for (let i = 0; i < articles.length; ++i) {
+				let item = articles[i];
+				item.classList.remove('bg-gray-400');
+				item.classList.add('bg-gray-800');
+			}
+
+			body.classList.remove('bg-yellow-200');
+			body.classList.add('bg-gray-900');
+
+			title.classList.remove('text-gray-900');
+			title.classList.add('text-gray-100');
+
+			disqus.classList.remove('text-gray-900');
+			disqus.classList.add('text-gray-100');
+
+			disqus.classList.remove('bg-yellow-200');
+			disqus.classList.add('bg-gray-900');
+
+			localStorage.setItem('jimtaylor-colorscheme', 'dark');
+
+			if (reload) {
+				window.location.reload(false); // for disqus
+			}
+		}
+	</script>
+
+
+</body>
+
+
+</html>

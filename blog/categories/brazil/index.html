@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="referrer" content="always">
+    <link rel="canonical" href="/blog/categories/brazil">
+    <meta name="description" content="">
+    <title>Brazil</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    <link rel="stylesheet" href="/assets/build/css/main.css?id=7ecca48dab65f903b523">
+    <link rel="shortcut icon" type="image/png" href="/assets/images/favicon.png" />
+</head>
+
+
+<body class="font-sans antialiased text-gray-100 leading-normal tracking-wider p-0 bg-gray-900">
+
+	
+<div class="max-w-4xl flex items-start h-auto lg:h-screen flex-wrap mx-auto">
+
+    <div class="mt-10 w-full mx-6 lg:mx-0 text-center lg:text-left flex justify-around lg:justify-between items-baseline">
+        <a href="/">
+            <h1 id="title" class="text-gray-100 text-3xl font-bold pt-8 lg:pt-5">Jim Taylor</h1>
+        </a>
+        <button class="bg-yellow-700 hover:bg-teal-900 text-white font-bold py-2 px-4 rounded-full">Brazil</button>
+        <image class="w-24 h-24 object-cover rounded-full mr-4 hidden sm:block" src="/assets/images/Jim-Taylor.jpg">
+    </div>
+  
+    
+    <div class="m-10">&nbsp;</div>
+
+    <!-- Pin to top right corner -->
+    <div class="absolute top-0 right-0 h-12 w-18 p-4">
+        <button class="js-change-theme focus:outline-none">☀️</button>
+    </div>
+
+</div>
+
+
+	<script src="https://unpkg.com/popper.js@1/dist/umd/popper.min.js"></script>
+	<script src="https://unpkg.com/tippy.js@4"></script>
+	<script>
+		//Init tooltips
+		tippy('.link', {
+			placement: 'bottom'
+		})
+
+		//Toggle mode
+		const toggle = document.querySelector('.js-change-theme');
+		const body = document.querySelector('body');
+		const title =  document.querySelector('#title');
+		const articles =  document.querySelectorAll('.article');
+
+		if(localStorage.getItem('jimtaylor-colorscheme') == 'light'){
+			this.lightsOn();
+		}
+
+		toggle.addEventListener('click', () => {
+
+			if (body.classList.contains('text-gray-100')) {
+				this.lightsOn();
+			} else {
+				this.lightsOff();
+			}
+		});
+
+		function lightsOn()
+		{
+			toggle.innerHTML = "🌙";
+				
+				body.classList.remove('text-gray-100');
+				body.classList.add('text-gray-900');
+
+				for (let i = 0; i < articles.length; ++i) {
+					let item = articles[i];  
+					item.classList.remove('bg-gray-800');
+					item.classList.add('bg-gray-400');
+				}
+
+				body.classList.remove('bg-gray-900');
+				body.classList.add('bg-yellow-200');
+
+				title.classList.remove('text-gray-100');
+				title.classList.add('text-gray-900');
+				localStorage.setItem('jimtaylor-colorscheme', 'light')
+		}
+
+		function lightsOff()
+		{
+			toggle.innerHTML = "☀️";
+				body.classList.remove('text-gray-900');
+				body.classList.add('text-gray-100');
+				for (let i = 0; i < articles.length; ++i) {
+					let item = articles[i];  
+					item.classList.remove('bg-gray-400');
+					item.classList.add('bg-gray-800');
+				}
+
+				body.classList.remove('bg-yellow-200');
+				body.classList.add('bg-gray-900');
+
+				title.classList.remove('text-gray-900');
+				title.classList.add('text-gray-100');
+				localStorage.setItem('jimtaylor-colorscheme', 'dark')
+		}
+
+	
+	</script>
+
+</body>
+
+
+</html>
