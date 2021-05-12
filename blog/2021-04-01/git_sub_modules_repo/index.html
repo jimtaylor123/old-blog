@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="referrer" content="always">
+    <link rel="canonical" href="/blog/2021-04-01/git_sub_modules_repo">
+    <meta name="description" content="Creating a git sub module based multi repo project">
+    <title>Creating a git sub module based multi repo project</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    <link rel="stylesheet" href="/assets/build/css/main.css?id=6e247211f5c171da9292">
+    <link rel="shortcut icon" type="image/png" href="/assets/images/favicon.png" />
+</head>
+
+
+<body class="font-sans antialiased text-gray-100 leading-normal tracking-normal p-0 bg-gray-900">
+
+	<!-- Page image -->
+	<div class="bg-cover bg-bottom object-fit h-96" style="background-image:url('/assets/images/articles/git_sub_modules_repo/eggs.jpg');"></div>
+
+	<!-- Text content -->
+	<div class="max-w-4xl mx-auto h-auto lg:h-screen">
+
+		<div class="flex items-center flex-wrap">
+
+			<!-- Article header -->
+			<div class="pt-5 pb-2 w-full mx-6 lg:mx-0 text-center lg:text-left flex justify-center lg:justify-between">
+				<div>
+					<a href="/">
+						<h1 id="title" class="text-gray-100 text-3xl font-bold">Creating a git sub module based multi repo project</h1>
+					</a>
+					April 1, 2021 <span class="font-hairline text-teal-500">|</span> <a class="text-xs" href="https://unsplash.com/photos/AiXeylszBPA" target="_blank">Image: Laurentiu Iordache</a>
+					<div class="mt-4 align-center flex justify-center">
+						<a href="/">
+							<img class="w-16 h-16 object-cover rounded-full m-4 sm:hidden" src="/assets/images/Jim-Taylor.jpg">
+						</a>
+					</div>
+				</div>
+				<a href="/">
+					<img class="w-16 h-16 object-cover rounded-full m-4 hidden sm:block" src="/assets/images/Jim-Taylor.jpg">
+				</a>
+			</div>
+
+			<!-- Divider -->
+			<div class="mx-auto lg:mx-0 w-4/5 pt-3 border-b-2 border-teal-500 opacity-25"></div>
+
+			<!-- Article -->
+			<div id="article" class="pt-2 mx-4 break-all">
+				<p><a href="#overview">Overview</a></p>
+
+<p><a href="#1-github-set-up">1. Github set up </a></p>
+
+<p><a href="#2-local-repo-set-up">2. Local repo set up </a></p>
+
+<p><a href="#3-using-your-sub-module-project">3. Using your sub module project </a></p>
+
+<p><a href="#epilogue">Epilogue </a></p>
+
+<p><br></p>
+
+<h2>Overview <a name="overview"></a></h2>
+
+<p>In this article I will show how to create a project that uses git submodules for a multi repo application.</p>
+
+<p>The end goal is a Laravel API with a react single page application and an ionic mobile application, grouped in a parent repository that contains project related files such as a README.md, as indicated by the image below:</p>
+
+<p><img src="/assets/images/articles/git_sub_modules_repo/multi-repo-project.png" width="75%"></p>
+
+<p><br></p>
+
+<p>You can see the final project on gitlab here: <a href="https://github.com/Git-submodules/">https://github.com/Git-submodules/</a></p>
+
+<p>You'll need git, php, composer, node and yarn installed your machine.</p>
+
+<p><br></p>
+
+<h2>Why? Sub modules vs Monorepos vs Indie repos <a name="why-sub-modules-vs-monorepos-vs-indie-repos"></a></h2>
+
+<p><br></p>
+
+<p>As far as I can see, for a project like the one shown in the image above you have 3 choices about how to store your code:</p>
+
+<ol>
+<li>Mono repo: put all the code in one repo that has a single git history</li>
+<li>Indie repos: Have each repo entirely separate</li>
+<li>Submodules: Use git sub modules to give each application it's own git history within a master repo</li>
+</ol>
+
+<p><br></p>
+
+<p>What are git submodules? See here: <a href="https://git-scm.com/book/en/v2/Git-Tools-Submodules">https://git-scm.com/book/en/v2/Git-Tools-Submodules</a></p>
+
+<p><br></p>
+
+<p>Note that some people don't like git sub modules:</p>
+
+<p><a href="https://medium.com/@uttamkini/sharing-code-and-why-git-submodules-is-a-bad-idea-1efd24eb645d">https://medium.com/@uttamkini/sharing-code-and-why-git-submodules-is-a-bad-idea-1efd24eb645d</a></p>
+
+<p><br></p>
+
+<p><a href="https://www.reddit.com/r/programming/comments/v060k/why_your_company_shouldnt_use_git_submodules/">https://www.reddit.com/r/programming/comments/v060k/why_your_company_shouldnt_use_git_submodules/</a></p>
+
+<p><br></p>
+
+<p><a href="https://codingkilledthecat.wordpress.com/2012/04/28/why-your-company-shouldnt-use-git-submodules/">https://codingkilledthecat.wordpress.com/2012/04/28/why-your-company-shouldnt-use-git-submodules/</a></p>
+
+<p><br></p>
+
+<p>However, I'm inclined to agree with this comment:</p>
+
+<p><img src="/assets/images/articles/git_sub_modules_repo/still-useful.png"></p>
+
+<p><br></p>
+
+<h3>Comparison table <a name="comparison-table"></a></h3>
+
+<table>
+<thead>
+<tr>
+  <th></th>
+  <th>Monorepo</th>
+  <th>Indie repos</th>
+  <th>Submodules</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Simple git experience</td>
+  <td>✅</td>
+  <td>✅</td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Single source of version controlled truth</td>
+  <td>✅</td>
+  <td>❌</td>
+  <td>✅</td>
+</tr>
+<tr>
+  <td>Git merge and history for a particular service</td>
+  <td>❌</td>
+  <td>✅</td>
+  <td>✅</td>
+</tr>
+<tr>
+  <td>Easy to add or remove new services</td>
+  <td>❌</td>
+  <td>✅</td>
+  <td>✅</td>
+</tr>
+<tr>
+  <td>Limit access to particular services to particular team members</td>
+  <td>❌</td>
+  <td>✅</td>
+  <td>✅</td>
+</tr>
+<tr>
+  <td>Easy to test or deploy just one service</td>
+  <td>❌</td>
+  <td>✅</td>
+  <td>✅</td>
+</tr>
+<tr>
+  <td>Easy to test and deploy all services at once</td>
+  <td>❌</td>
+  <td>✅</td>
+  <td>✅</td>
+</tr>
+<tr>
+  <td>Easier to debug complex issues</td>
+  <td>❌</td>
+  <td>✅</td>
+  <td>✅</td>
+</tr>
+</tbody>
+</table>
+
+<p><br></p>
+
+<blockquote>
+  <p>I'm not entirely convinced that git sub modules are superior to indie repos. You could still have a master repo that contained set up instructions for the whole project including links to the sub repos and you would perhaps have an easier time inducting new team members. Your master repo could include a makefile that cloned each git repo locally. However, I wanted to try out using git sub modules, so that's what this article will be about.</p>
+</blockquote>
+
+<p><br></p>
+
+<h2>1. Github set up <a name="1-github-set-up"></a></h2>
+
+<ol>
+<li>Create a github account if you don't have one</li>
+<li>Create an organization in github, free level is fine: https://github.com/organizations/plan</li>
+</ol>
+
+<blockquote>
+  <p>"Organizations" is how github groups multiple repos, gitlab uses "projects" instead.</p>
+</blockquote>
+
+<p>You'll have to jump through a few screens:</p>
+
+<p><img src="/assets/images/articles/git_sub_modules_repo/create-org.png" >
+<br>
+<img src="/assets/images/articles/git_sub_modules_repo/create-org-2.png" >
+<br>
+<img src="/assets/images/articles/git_sub_modules_repo/create-org-3.png" >
+<br>
+<img src="/assets/images/articles/git_sub_modules_repo/create-org-4.png" >
+<br></p>
+
+<p>Finally, you'll get to your new organization.</p>
+
+<p><img src="/assets/images/articles/git_sub_modules_repo/create-org-5.png" >
+</br></p>
+
+<h2>2. Local repo set up <a name="2-local-repo-set-up"></a></h2>
+
+<p>Create your sub modules locally and restart their git history, then push them to a remote.</p>
+
+<h3>Laravel api <a name="laravel-api"></a></h3>
+
+<ol>
+<li>Create an empty repo on github, I'm calling mine "laravel-api".</li>
+</ol>
+
+<p><img src="/assets/images/articles/git_sub_modules_repo/create-laravel-api-repo.png" >
+</br></p>
+
+<p>And create a working directory on your local machine:</p>
+
+<pre><code>mkdir gitsubmodules
+cd gitsubmodules
+</code></pre>
+
+<ol start="2">
+<li>Get Laravel set up locally</li>
+</ol>
+
+<pre><code>git clone https://github.com/laravel/laravel.git laravel-api
+cd laravel-api
+rm -rf .git
+git init 
+touch README.md
+echo "#Laravel API" &gt; README.md
+cp .env.example .env 
+composer install
+php artisan key:generate
+php artisan serve
+</code></pre>
+
+<p>Go to <a href="http://localhost:8000">http://localhost:8000</a> in a browser, you should see this:</p>
+
+<p><img src="/assets/images/articles/git_sub_modules_repo/laravel-success.png"></p>
+
+<p>Assuming you can see your laravel site, you can now push to your repo.</p>
+
+<p>Ctrl + c to exit the php server, then ...</p>
+
+<p><br></p>
+
+<pre><code>git remote add origin https://github.com/Git-submodules/laravel-api.git
+git add .
+git commit -m 'Initial commit'
+git branch -M main
+git push -u origin main
+</code></pre>
+
+<p><br></p>
+
+<h3>Next JS SPA <a name="next-js-spa"></a></h3>
+
+<ol>
+<li>Create a second empty repo on github, I'm calling mine "next-spa".</li>
+<li>Get Next JS set up locally</li>
+</ol>
+
+<p>Assuming you are still in the laravel-api directory, navigate back up to the project directory.</p>
+
+<pre><code>cd ..
+</code></pre>
+
+<p>Then run the following commands in your terminal</p>
+
+<pre><code>npx create-next-app
+cd next-spa
+yarn run dev
+</code></pre>
+
+<p><br></p>
+
+<p>Open <a href="localhost:3000">localhost:3000</a>, you should see this:</p>
+
+<p><img src="/assets/images/articles/git_sub_modules_repo/nextjs-success.png"></p>
+
+<p><br>
+Assuming you can see your next js site, you can now push to your repo.
+<br></p>
+
+<p>Ctrl + c to exit the php server, then ...</p>
+
+<pre><code>git remote add origin https://github.com/Git-submodules/next-spa.git
+git add .
+git commit -m 'Initial commit'
+git push -u origin main
+</code></pre>
+
+<h3>Ionic mobile app <a name="ionic-mobile-app"></a></h3>
+
+<ol>
+<li>Create a third empty repo on github, I'm calling mine "ionic-mobile".</li>
+<li>Get Ionic set up locally</li>
+</ol>
+
+<p>Assuming you are still in the next-spa directory, navigate back up to the project directory.</p>
+
+<pre><code>cd ..
+</code></pre>
+
+<p>Run the following commands in your terminal</p>
+
+<pre><code>npx create-react-app ionic-mobile
+cd ionic-mobile
+yarn start
+</code></pre>
+
+<p><br></p>
+
+<p>Open localhost:3000, you should see this:</p>
+
+<p><img src="/assets/images/articles/git_sub_modules_repo/ionic-success.png"></p>
+
+<p>Assuming you can see your next js site, you can now push to your repo.</p>
+
+<p><br></p>
+
+<pre><code>git branch -m main
+git remote add origin https://github.com/Git-submodules/ionic-mobile.git
+git add .
+git commit -m 'Initial commit'
+git push -u origin main
+</code></pre>
+
+<p>You should now have 3 repos within your github organization:</p>
+
+<p><img src="/assets/images/articles/git_sub_modules_repo/3-repos.png" ></p>
+
+<h3>Create a hub repo <a name="create-a-hub-repo"></a></h3>
+
+<p><br></p>
+
+<ol>
+<li>On github, within your organization create a "Hub" repo with just a README.md *commit this as the initial commit.</li>
+</ol>
+
+<p><img src="/assets/images/articles/git_sub_modules_repo/hub-repo.png"></p>
+
+<blockquote>
+  <p>I considered calling my main repo "Master" or "Main", but settled on "Hub" to avoid any confusion with branch names.</p>
+</blockquote>
+
+<ol>
+<li>Clone the "Hub" repo locally *you should just have a readme file</li>
+</ol>
+
+<p>Assuming you are still in the ionic-mobile directory, navigate back up to the project directory and git clone the hub
+<br></p>
+
+<pre><code>cd ..
+git clone https://github.com/Git-submodules/hub.git
+</code></pre>
+
+<p><br></p>
+
+<ol start="2">
+<li>Go into your local version of Hub and add all other repos as sub modules</li>
+</ol>
+
+<pre><code>cd hub
+git submodule add https://github.com/Git-submodules/laravel-api.git
+git submodule add https://github.com/Git-submodules/next-spa.git
+git submodule add https://github.com/Git-submodules/ionic-mobile.git
+git add .
+git commit -m 'Added git submodules'
+git push
+</code></pre>
+
+<p><br></p>
+
+<ol start="3">
+<li>Delete all local repos except hub - rename this to old hub</li>
+</ol>
+
+<pre><code>cd ..
+rm -rf laravel-api
+rm -rf next-spa
+rm -rf ionic-mobile
+mv hub old-hub
+</code></pre>
+
+<p><br></p>
+
+<p>Now you will see your hub has it's sub modules, clicking on the link should take you to the relevant github repository.</p>
+
+<p><img src="/assets/images/articles/git_sub_modules_repo/hub-with-submodules.png">
+<br></p>
+
+<h2>3. Using your sub module project <a name="3-using-your-sub-module-project"></a></h2>
+
+<h3>Cloning your project <a name="cloning-your-project"></a></h3>
+
+<p>Clone hub, but this time with the recurse flag</p>
+
+<pre><code>git clone --recurse-submodules https://github.com/Git-submodules/hub.git
+</code></pre>
+
+<p>You should see all your submodules instantly loaded.</p>
+
+<p>However, there is a problem: each sub module is in a detached head state.</p>
+
+<p><img src="/assets/images/articles/git_sub_modules_repo/detached-head.png">
+<br></p>
+
+<p>You have two choices here:</p>
+
+<p>(i) cd into each directory and check out the branch you want, eg git checkout main 
+(ii) use a foreach command to do the same</p>
+
+<p>If you were setting up the project for the first time I'd go with option (ii), but as time goes by each sub module will need to be checked out to the relevant branch you are working on.</p>
+
+<p>The command to check all sub modules out to main is as follows:</p>
+
+<pre><code>git submodule foreach 'git checkout main'
+</code></pre>
+
+<p>Now we can see all branches are on main:</p>
+
+<p><img src="/assets/images/articles/git_sub_modules_repo/foreach-all-main.png">
+<br></p>
+
+<p>With this type of set up I would recommend treating each sub module seperately, but there may be occasions when it would make sense to push or pull all together.</p>
+
+<h3>Committing and pushing <a name="committing-and-pushing"></a></h3>
+
+<p>Lets make some changes first to the hub and two repos. 
+Issue the following commands in the hub home directory:</p>
+
+<pre><code>touch Makefile
+echo "Ionic readme" &gt; ionic-mobile/README.md
+touch ionic-mobile/testfile-ionic.txt
+
+echo "Next readme" &gt; next-spa/README.md
+touch next-spa/testfile-next.txt
+</code></pre>
+
+<p>After running these commands take a look at the way the changes are displayed, depending on where you are in your project:</p>
+
+<p><img src="/assets/images/articles/git_sub_modules_repo/example-changes.png"></p>
+
+<ol>
+<li>Push only hub</li>
+</ol>
+
+<p>From within the "hub" home directory, run the following:</p>
+
+<pre><code>git add .
+git commit -m 'Added readme'
+git push
+</code></pre>
+
+<p>As you can see, only the hub changes were pushed:</p>
+
+<p><img src="/assets/images/articles/git_sub_modules_repo/add-hub-changes.png"></p>
+
+<ol start="2">
+<li>Push only sub module</li>
+</ol>
+
+<p>cd into the sub module and repeat the steps above, eg.</p>
+
+<pre><code>cd ionic-mobile
+git add .
+git commit -m 'Edited readme and added test file'
+git push
+</code></pre>
+
+<p><img src="/assets/images/articles/git_sub_modules_repo/push-just-submodule.png"></p>
+
+<ol start="3">
+<li>Push hub and sub modules</li>
+</ol>
+
+<p>To push both hub and sub modules at the same time (probably not a great idea most of the time) do the following from the hub directory:</p>
+
+<pre><code>cd next-spa
+git add .
+git commit -m 'Edited readme and added test file'
+cd ..
+git push --recurse-submodules=on-demand
+</code></pre>
+
+<p>As you can see, we had to first commit the sub module and then cd up, so this is the least helpful command here. I think if you are going to use sub modules you should probably just ignore this option and treat each branch separately.</p>
+
+<h3>Pulling <a name="pulling"></a></h3>
+
+<p>Pulling and merging work in a similar way to that shown above for pushing.</p>
+
+<p>However, as an exercise, lets cd into our old-hub and pull all the changes at once in the hub:</p>
+
+<pre><code>cd ..
+cd old-hub
+git pull
+</code></pre>
+
+<p>As you can see, only one file was updated, the hub Makefile we created.</p>
+
+<p><img src="/assets/images/articles/git_sub_modules_repo/git-pull-only-updates-one-file.png"></p>
+
+<p>To update all the sub modules, we can either cd into each sub module and do git pull or we can do the following from the hub directory:</p>
+
+<pre><code>git pull --recurse-submodules
+</code></pre>
+
+<h2>Epilogue <a name="epilogue"></a></h2>
+
+<p>I've also added some content to the makefile meaning you should be able to pull this repo and run right away. 
+As long as you have make installed, run the following command:</p>
+
+<pre><code>make setup
+make serve-all
+</code></pre>
+
+<p>And then you should be able to see all the applications on localhost 8000, 3000 and 4000</p>
+
+<p><br>
+In this article I've shown how to set up a multi repo project on github using sub modules.</p>
+
+<p><br>
+However, the apps still don't interact with each other, display no useful data and aren't deployed to live sites. This is something I plan to illustrate in future articles *stay tuned.</p>
+			</div>
+
+			<!-- Pin to top right corner -->
+			<div class="absolute top-0 right-0 h-12 w-18 p-4">
+				<button class="js-change-theme focus:outline-none">☀️</button>
+			</div>
+
+		</div>
+
+		<div id="diqus_container" class="bg-gray-900 text-gray-900 p-10">
+    <div id="disqus_thread">
+
+    </div>
+
+    <script>
+        (function() {
+            var d = document,
+                s = d.createElement('script');
+            s.src = 'https://jimtaylor-co-uk.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+
+    <noscript>
+        Please enable JavaScript to view the
+        <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.
+        </a>
+    </noscript>
+
+</div>
+	</div>
+
+	<script>
+		//Toggle mode
+		const toggle = document.querySelector('.js-change-theme');
+		const body = document.querySelector('body');
+		const title = document.querySelector('#title');
+		const articles = document.querySelectorAll('.article');
+
+		const disqus = document.querySelector('#diqus_container');
+
+
+		if (localStorage.getItem('jimtaylor-colorscheme') == 'light') {
+			this.lightsOn(false);
+		}
+
+		toggle.addEventListener('click', () => {
+
+			if (body.classList.contains('text-gray-100')) {
+
+				this.lightsOn();
+
+			} else {
+				this.lightsOff();
+			}
+		});
+
+		function lightsOn(reload = true) {
+			toggle.innerHTML = "🌙";
+
+			body.classList.remove('text-gray-100');
+			body.classList.add('text-gray-900');
+
+			for (let i = 0; i < articles.length; ++i) {
+				let item = articles[i];
+				item.classList.remove('bg-gray-800');
+				item.classList.add('bg-gray-400');
+			}
+
+			body.classList.remove('bg-gray-900');
+			body.classList.add('bg-gray-200');
+
+			title.classList.remove('text-gray-100');
+			title.classList.add('text-gray-900');
+
+			disqus.classList.remove('text-gray-100');
+			disqus.classList.remove('bg-gray-900');
+			disqus.classList.add('text-gray-900');
+			disqus.classList.add('bg-gray-200');
+
+			localStorage.setItem('jimtaylor-colorscheme', 'light')
+
+			if (reload) {
+				window.location.reload(false); // for disqus
+			}
+		}
+
+		function lightsOff(reload = true) {
+			toggle.innerHTML = "☀️";
+			body.classList.remove('text-gray-900');
+			body.classList.add('text-gray-100');
+			for (let i = 0; i < articles.length; ++i) {
+				let item = articles[i];
+				item.classList.remove('bg-gray-400');
+				item.classList.add('bg-gray-800');
+			}
+
+			body.classList.remove('bg-gray-200');
+			body.classList.add('bg-gray-900');
+
+			title.classList.remove('text-gray-900');
+			title.classList.add('text-gray-100');
+
+			disqus.classList.remove('text-gray-900');
+			disqus.classList.add('text-gray-100');
+
+			disqus.classList.remove('bg-gray-200');
+			disqus.classList.add('bg-gray-900');
+
+			localStorage.setItem('jimtaylor-colorscheme', 'dark');
+
+			if (reload) {
+				window.location.reload(false); // for disqus
+			}
+		}
+	</script>
+
+
+</body>
+
+
+</html>
