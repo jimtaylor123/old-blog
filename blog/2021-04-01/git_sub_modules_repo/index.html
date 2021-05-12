@@ -13,7 +13,7 @@
     <meta name="keywords" content="">
     <meta name="author" content="">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
-    <link rel="stylesheet" href="/assets/build/css/main.css?id=6e247211f5c171da9292">
+    <link rel="stylesheet" href="/assets/build/css/main.css?id=54c688b2bf9b6a5073f4">
     <link rel="shortcut icon" type="image/png" href="/assets/images/favicon.png" />
 </head>
 
@@ -50,7 +50,7 @@
 			<div class="mx-auto lg:mx-0 w-4/5 pt-3 border-b-2 border-teal-500 opacity-25"></div>
 
 			<!-- Article -->
-			<div id="article" class="pt-2 mx-4 break-all">
+			<div id="article" class="pt-2 mx-4 xs:break-all sm:break-words">
 				<p><a href="#overview">Overview</a></p>
 
 <p><a href="#1-github-set-up">1. Github set up </a></p>
@@ -219,6 +219,8 @@
 
 <p>Create your sub modules locally and restart their git history, then push them to a remote.</p>
 
+<p><br></p>
+
 <h3>Laravel api <a name="laravel-api"></a></h3>
 
 <ol>
@@ -306,6 +308,8 @@ git commit -m 'Initial commit'
 git push -u origin main
 </code></pre>
 
+<p><br></p>
+
 <h3>Ionic mobile app <a name="ionic-mobile-app"></a></h3>
 
 <ol>
@@ -346,9 +350,9 @@ git push -u origin main
 
 <p><img src="/assets/images/articles/git_sub_modules_repo/3-repos.png" ></p>
 
-<h3>Create a hub repo <a name="create-a-hub-repo"></a></h3>
-
 <p><br></p>
+
+<h3>Create a hub repo <a name="create-a-hub-repo"></a></h3>
 
 <ol>
 <li>On github, within your organization create a "Hub" repo with just a README.md *commit this as the initial commit.</li>
@@ -408,6 +412,8 @@ mv hub old-hub
 
 <h2>3. Using your sub module project <a name="3-using-your-sub-module-project"></a></h2>
 
+<p><br></p>
+
 <h3>Cloning your project <a name="cloning-your-project"></a></h3>
 
 <p>Clone hub, but this time with the recurse flag</p>
@@ -424,10 +430,14 @@ mv hub old-hub
 
 <p>You have two choices here:</p>
 
-<p>(i) cd into each directory and check out the branch you want, eg git checkout main 
-(ii) use a foreach command to do the same</p>
+<p>(i) cd into each directory and check out the branch you want, eg git checkout main</p>
 
-<p>If you were setting up the project for the first time I'd go with option (ii), but as time goes by each sub module will need to be checked out to the relevant branch you are working on.</p>
+<p>(ii) Use a foreach command to do the same</p>
+
+<p><br>
+If you were setting up the project for the first time I'd go with option (ii), but as time goes by each sub module will need to be checked out to the relevant branch you are working on.</p>
+
+<p><br></p>
 
 <p>The command to check all sub modules out to main is as follows:</p>
 
@@ -440,6 +450,8 @@ mv hub old-hub
 <br></p>
 
 <p>With this type of set up I would recommend treating each sub module seperately, but there may be occasions when it would make sense to push or pull all together.</p>
+
+<p><br></p>
 
 <h3>Committing and pushing <a name="committing-and-pushing"></a></h3>
 
@@ -502,6 +514,8 @@ git push --recurse-submodules=on-demand
 
 <p>As you can see, we had to first commit the sub module and then cd up, so this is the least helpful command here. I think if you are going to use sub modules you should probably just ignore this option and treat each branch separately.</p>
 
+<p><br></p>
+
 <h3>Pulling <a name="pulling"></a></h3>
 
 <p>Pulling and merging work in a similar way to that shown above for pushing.</p>
@@ -521,6 +535,8 @@ git pull
 
 <pre><code>git pull --recurse-submodules
 </code></pre>
+
+<p><br></p>
 
 <h2>Epilogue <a name="epilogue"></a></h2>
 
